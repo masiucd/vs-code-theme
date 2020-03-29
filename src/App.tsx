@@ -2,13 +2,14 @@
 import React from 'react';
 import Layout from './components/layout/Layout';
 import UserProvider from './context/user/user.state';
+import Users from './components/users/Users';
 
 
 function App() {
   return (
     <UserProvider>
       <Layout>
-        <h1>apa</h1>
+        <Users />
       </Layout>
     </UserProvider>
   );
