@@ -10,11 +10,14 @@ interface IFormData {
   companyPhrase?: string;
 }
 
-export default () => {
+export default (register: Function) => {
   const [userForm, setUserForm] = React.useState<IFormData>({
     name: '',
     username: '',
     email: '',
+    companyName: '',
+    companyBs: '',
+    companyPhrase: '',
   });
 
 
@@ -26,11 +29,13 @@ export default () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    register();
   };
 
 
   return {
     handleChange,
     handleSubmit,
+    userForm,
   };
 };

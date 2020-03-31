@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import * as React from 'react';
 import { UserContext } from '../../context/user/user.state';
 import UserItem from './UserItem';
@@ -16,7 +17,9 @@ const Users: React.FC<Props> = () => {
   return (
     <>
       <TwoColWrapper>
-        {!loading && users.length > 0 && users.map((user) => <UserItem key={user.id} user={user} />)}
+        {!loading && users.length > 0 && users.map(
+          (user) => <UserItem key={user.id} user={user} />,
+        )}
       </TwoColWrapper>
     </>
   );

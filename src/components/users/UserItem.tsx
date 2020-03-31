@@ -50,9 +50,7 @@ const UserItem: React.FC<Props> = ({ user }) => {
         )}
 
       </div>
-      <div className="address">
-        <strong className="btn-logo">Address &#8595;</strong>
-      </div>
+
 
     </StyledUserItem>
 

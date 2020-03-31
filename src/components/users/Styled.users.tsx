@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FlexStyle } from '../styled/Global';
+import { FadeIn } from '../styled/animation';
 
 
 export const StyledUserWrapper = styled.div`
@@ -19,7 +20,7 @@ export const StyledUserItem = styled.div`
   box-shadow: ${(props) => props.theme.shadow.lightShadow};
   letter-spacing: .1rem;
   border-radius: 1rem;
-
+  animation: 1s ${FadeIn} ease-in;
   p{
     font-size: 1.2rem;
     span{
@@ -33,8 +34,11 @@ export const StyledUserItem = styled.div`
     justify-content:center;
     align-items:center;
     width: 100%;
+
     p{
+      animation: 500ms ${FadeIn} ease-in;
       text-align:center;
+      text-transform: capitalize;
       span{
         display: block;
       }

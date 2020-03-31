@@ -24,8 +24,6 @@ export const Container = styled.div`
 
 export const UserPageWrapper = styled.div`
   display: flex;
-  /* TODO:remove */
-  border: 2px solid red;
   width: 100%;
   min-height: 70vh;
   padding: 1rem;
@@ -38,10 +36,11 @@ export const UserPageWrapper = styled.div`
 
 export const TwoColWrapper = styled.div`
   width: 50%;
-  /* TODO:remove */
-  border: 2px solid blue;
   ${FlexStyle};
   padding: 1rem 1.2rem;
+  /* TODO:check */
+  overflow: scroll;
+  max-height: 110vh;
   @media(max-width:995px){
     flex-direction: column;
     justify-content : center;
