@@ -93,4 +93,11 @@ export const Input = styled.input`
     width: 32vw;
     }
   }
+  @media(min-width:1600px){
+    width: 23vw;
+
+  &:focus{
+    width: 24.5vw;
+    }
+  }
 `;

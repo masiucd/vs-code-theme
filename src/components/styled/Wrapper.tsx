@@ -41,6 +41,7 @@ export const TwoColWrapper = styled.div`
   /* TODO:check */
   /* overflow: scroll; */
   /* max-height: 120vh; */
+  margin: 0 1rem;
   @media(max-width:995px){
     flex-direction: column;
     justify-content : center;

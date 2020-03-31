@@ -14,23 +14,26 @@ interface Props {
 }
 
 const Form: React.FC<Props> = ({ title }) => {
-  const { addUser, current } = React.useContext(UserContext);
+  const { addUser, current, updateUser } = React.useContext(UserContext);
   const {
     userForm, handleChange, handleSubmit, setUserForm,
-  } = useForm(register, current);
+  } = useForm(register);
 
 
-  // React.useEffect(() => {
-  //   if (current && current !== null) {
-  //     setUserForm({ });
-  //   } else {
-  //     setUserForm(userForm);
-  //   }
-  // }, []);
+  React.useEffect(() => {
+    if (current !== null) {
+      const {
+        username, name, email, phone, website,
+      } = current;
+      setUserForm({
+        name, username, email, phone, website,
+      });
+    }
+  }, [current, UserContext]);
+
 
   function register() {
     addUser(userForm);
-    console.log('USER ADDED!!');
   }
 
 

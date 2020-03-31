@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/interface-name-prefix */
 import * as React from 'react';
-import { IUser } from '../context/user/user.types';
+
 
 export interface IFormData {
   id?: number;
@@ -12,7 +12,7 @@ export interface IFormData {
 }
 
 
-export default (register: Function, current: IUser | null) => {
+export default (register: Function) => {
   const [userForm, setUserForm] = React.useState<IFormData>({
     name: '',
     username: '',
@@ -21,10 +21,6 @@ export default (register: Function, current: IUser | null) => {
     website: '',
   });
 
-
-  React.useEffect(() => {
-    // handle current value here
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;

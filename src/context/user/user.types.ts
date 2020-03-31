@@ -17,6 +17,7 @@ export interface IUserState {
   getUsers: Function;
   setCurrent: Function;
   addUser: Function;
+  updateUser: Function;
 }
 
 export enum UsersActions {
@@ -50,7 +51,7 @@ export interface UpdateUserAction {
 }
 
 export interface DeleteUserAction {
-  type: UsersActions.UPDATE_USER;
+  type: UsersActions.DELETE_USER;
   payload: string;
 }
 export interface SetCurrentAction {

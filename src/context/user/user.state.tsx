@@ -7,8 +7,9 @@ import * as React from 'react';
 import userReducer from './user.reducer';
 import {
   IUser, IUserState, UsersActions,
-  GetUserAction, GetUsersAction, AddUserAction,
+  GetUserAction, GetUsersAction, AddUserAction, UpdateUserAction,
 } from './user.types';
+import { IFormData } from '../../hooks/useForm';
 
 export const initialState: IUserState = {
   users: [],
@@ -19,7 +20,7 @@ export const initialState: IUserState = {
   getUsers: Function,
   setCurrent: Function,
   addUser: Function,
-
+  updateUser: Function,
 };
 
 export const UserContext = React.createContext<IUserState>(initialState);
@@ -73,6 +74,26 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
+
+  const updateUser = async (user: IUser): Promise<void | UpdateUserAction> => {
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`,
+        {
+          method: 'PUT',
+          body: JSON.stringify(user),
+          headers: { 'Content-Type': 'application/json' },
+        });
+      const resBody: IUser = await response.json();
+
+      dispatch({
+        type: UsersActions.UPDATE_USER,
+        payload: resBody,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <UserContext.Provider value={{
       users: state.users,
@@ -83,6 +104,7 @@ const UserProvider: React.FC<Props> = ({ children }) => {
       getUsers,
       setCurrent,
       addUser,
+      updateUser,
     }}
     >
       {children}
