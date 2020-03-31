@@ -39,8 +39,8 @@ export const TwoColWrapper = styled.div`
   ${FlexStyle};
   padding: 1rem 1.2rem;
   /* TODO:check */
-  overflow: scroll;
-  max-height: 110vh;
+  /* overflow: scroll; */
+  /* max-height: 120vh; */
   @media(max-width:995px){
     flex-direction: column;
     justify-content : center;

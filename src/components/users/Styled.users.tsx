@@ -8,13 +8,21 @@ export const StyledUserWrapper = styled.div`
 `;
 
 export const StyledUserItem = styled.div`
-#updateIcon{
+#updateIcon,#deleteIcon{
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+
   font-size: 1.4rem;
   cursor: pointer;
   z-index: 2;
+}
+#deleteIcon{
+  top: 1rem;
+  right: 1rem
+}
+
+#updateIcon{
+  top: 1rem;
+  right: 3.5rem;
 }
   display: flex;
   position: relative;

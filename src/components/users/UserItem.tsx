@@ -14,11 +14,14 @@ interface Props {
 
 const UserItem: React.FC<Props> = ({ user }) => {
   const [showCompany, toggleCompany] = useToggle(false);
-  const { setCurrent } = React.useContext(UserContext);
+  const { setCurrent, current } = React.useContext(UserContext);
+
+  console.log(current);
 
   return (
     <StyledUserItem>
       <div id="updateIcon" onClick={() => setCurrent(user)}>✏️</div>
+      <div id="deleteIcon">🗑</div>
       <div className="info">
         <p>
           Name:
@@ -37,22 +40,18 @@ const UserItem: React.FC<Props> = ({ user }) => {
         </p>
       </div>
       <div className="company">
-        <strong onClick={toggleCompany} className="btn-logo">Company &#8595;</strong>
+        <strong onClick={toggleCompany} className="btn-logo">extra &#8595;</strong>
         {showCompany && (
           <>
             <p>
-              company name :
-              <span>{user.company.name}</span>
+              phone :
+              <span>{user.phone && user.phone }</span>
             </p>
             <p>
-              company BS :
-              <span>{user.company.bs}</span>
+              website :
+              <span>{user.website && user.website }</span>
             </p>
-            <p>
-              Company CathPhrase:
-              {' '}
-              <span>{user.company.catchPhrase}</span>
-            </p>
+
           </>
         )}
 

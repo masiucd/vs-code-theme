@@ -1,25 +1,30 @@
 /* eslint-disable @typescript-eslint/interface-name-prefix */
 import * as React from 'react';
+import { IUser } from '../context/user/user.types';
 
-interface IFormData {
+export interface IFormData {
+  id?: number;
   name?: string;
   username?: string;
   email?: string;
-  companyName?: string;
-  companyBs?: string;
-  companyPhrase?: string;
+  phone?: string;
+  website?: string;
 }
 
-export default (register: Function) => {
+
+export default (register: Function, current: IUser | null) => {
   const [userForm, setUserForm] = React.useState<IFormData>({
     name: '',
     username: '',
     email: '',
-    companyName: '',
-    companyBs: '',
-    companyPhrase: '',
+    phone: '',
+    website: '',
   });
 
+
+  React.useEffect(() => {
+    // handle current value here
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
@@ -30,6 +35,13 @@ export default (register: Function) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     register();
+    setUserForm({
+      name: '',
+      username: '',
+      email: '',
+      phone: '',
+      website: '',
+    });
   };
 
 
@@ -37,5 +49,6 @@ export default (register: Function) => {
     handleChange,
     handleSubmit,
     userForm,
+    setUserForm,
   };
 };

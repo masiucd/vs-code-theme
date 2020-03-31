@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import { TwoColWrapper } from '../Wrapper';
@@ -6,17 +7,32 @@ import {
 } from './Styled.Form';
 import { StyledBtn } from '../Buttons';
 import useForm from '../../../hooks/useForm';
+import { UserContext } from '../../../context/user/user.state';
 
 interface Props {
   title: string;
 }
 
 const Form: React.FC<Props> = ({ title }) => {
-  const { userForm, handleChange, handleSubmit } = useForm(register);
+  const { addUser, current } = React.useContext(UserContext);
+  const {
+    userForm, handleChange, handleSubmit, setUserForm,
+  } = useForm(register, current);
+
+
+  // React.useEffect(() => {
+  //   if (current && current !== null) {
+  //     setUserForm({ });
+  //   } else {
+  //     setUserForm(userForm);
+  //   }
+  // }, []);
 
   function register() {
-    alert(userForm.name);
+    addUser(userForm);
+    console.log('USER ADDED!!');
   }
+
 
   return (
     <TwoColWrapper>
@@ -45,24 +61,18 @@ const Form: React.FC<Props> = ({ title }) => {
 
         <FormGroup>
           <FormLabel>
-            <span>Company:</span>
-            <Input onChange={handleChange} type="text" placeholder="company" value={userForm.companyName} name="companyName" />
+            <span>phone:</span>
+            <Input onChange={handleChange} type="text" placeholder="phone" value={userForm.phone} name="phone" />
           </FormLabel>
         </FormGroup>
 
         <FormGroup>
           <FormLabel>
-            <span>Company BS:</span>
-            <Input onChange={handleChange} type="text" placeholder="company BS" value={userForm.companyBs} name="companyBs" />
+            <span>Website:</span>
+            <Input onChange={handleChange} type="text" placeholder="website" value={userForm.website} name="website" />
           </FormLabel>
         </FormGroup>
-        <FormGroup>
 
-          <FormLabel>
-            <span>Company Catch phrase:</span>
-            <Input onChange={handleChange} type="text" placeholder="company phrase" value={userForm.companyPhrase} name="companyPhrase" />
-          </FormLabel>
-        </FormGroup>
 
         <StyledBtn type="submit">Register</StyledBtn>
       </StyledForm>
