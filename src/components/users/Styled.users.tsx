@@ -8,7 +8,16 @@ export const StyledUserWrapper = styled.div`
 `;
 
 export const StyledUserItem = styled.div`
+#updateIcon{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 2;
+}
   display: flex;
+  position: relative;
   flex-direction:column;
   align-items:center;
   justify-content: space-around;

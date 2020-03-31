@@ -24,4 +24,7 @@ const Users: React.FC<Props> = () => {
     </>
   );
 };
+
+
 export default Users;
+export const MemorizedMovie = React.memo(Users);

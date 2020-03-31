@@ -11,6 +11,17 @@ export default (state: IUserState = initialState, action: UserActionType) => {
         users: action.payload,
         loading: false,
       };
+    case UsersActions.ADD_USER:
+      return {
+        ...state,
+        users: [...state.users, action.payload],
+        loading: false,
+      };
+    case UsersActions.SET_CURRENT:
+      return {
+        ...state,
+        current: action.payload,
+      };
     default:
       return state;
   }
