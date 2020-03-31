@@ -4,10 +4,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable @typescript-eslint/interface-name-prefix */
 import * as React from 'react';
+import axios from 'axios';
 import userReducer from './user.reducer';
 import {
   IUser, IUserState, UsersActions,
-  GetUserAction, GetUsersAction, AddUserAction, UpdateUserAction,
+  GetUserAction, GetUsersAction, AddUserAction, UpdateUserAction, DeleteUserAction,
 } from './user.types';
 import { IFormData } from '../../hooks/useForm';
 
@@ -21,6 +22,7 @@ export const initialState: IUserState = {
   setCurrent: Function,
   addUser: Function,
   updateUser: Function,
+  deleteUser: Function,
 };
 
 export const UserContext = React.createContext<IUserState>(initialState);
@@ -94,6 +96,19 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
+
+  const deleteUser = async (id: number): Promise<void | DeleteUserAction> => {
+    try {
+      await axios.delete(`https://jsonplaceholder.typicode.com/users/${id.toString()}`);
+      dispatch({
+        type: UsersActions.DELETE_USER,
+        payload: id.toString(),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <UserContext.Provider value={{
       users: state.users,
@@ -105,6 +120,7 @@ const UserProvider: React.FC<Props> = ({ children }) => {
       setCurrent,
       addUser,
       updateUser,
+      deleteUser,
     }}
     >
       {children}

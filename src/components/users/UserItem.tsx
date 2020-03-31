@@ -14,14 +14,16 @@ interface Props {
 
 const UserItem: React.FC<Props> = ({ user }) => {
   const [showCompany, toggleCompany] = useToggle(false);
-  const { setCurrent, current } = React.useContext(UserContext);
+  const { setCurrent, deleteUser } = React.useContext(UserContext);
 
-  console.log(current);
-
+  const handleDelete = () => {
+    deleteUser(user.id.toString());
+    console.log('deleting!!!');
+  };
   return (
     <StyledUserItem>
       <div id="updateIcon" onClick={() => setCurrent(user)}>✏️</div>
-      <div id="deleteIcon">🗑</div>
+      <div id="deleteIcon" onClick={handleDelete}>🗑</div>
       <div className="info">
         <p>
           Name:

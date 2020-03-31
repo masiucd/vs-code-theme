@@ -18,6 +18,7 @@ export interface IUserState {
   setCurrent: Function;
   addUser: Function;
   updateUser: Function;
+  deleteUser: Function;
 }
 
 export enum UsersActions {

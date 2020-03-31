@@ -26,6 +26,12 @@ export default (state: IUserState = initialState, action: UserActionType) => {
         users: state.users.map((user) => (user.id === action.payload.id ? action.payload : user)),
         loading: false,
       };
+    case UsersActions.DELETE_USER:
+      return {
+        ...state,
+        users: state.users.filter((user) => user.id.toString() !== action.payload),
+        loading: false,
+      };
     case UsersActions.SET_CURRENT:
       return {
         ...state,
