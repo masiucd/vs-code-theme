@@ -23,6 +23,7 @@ export const initialState: IUserState = {
   addUser: Function,
   updateUser: Function,
   deleteUser: Function,
+  clearCurrent: Function,
 };
 
 export const UserContext = React.createContext<IUserState>(initialState);
@@ -77,15 +78,15 @@ const UserProvider: React.FC<Props> = ({ children }) => {
   };
 
 
-  const updateUser = async (user: IUser): Promise<void | UpdateUserAction> => {
+  const updateUser = async (user: IUser, id: string): Promise<void | UpdateUserAction> => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
     try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`,
-        {
-          method: 'PUT',
-          body: JSON.stringify(user),
-          headers: { 'Content-Type': 'application/json' },
-        });
-      const resBody: IUser = await response.json();
+      const response = await axios.patch(`https://jsonplaceholder.typicode.com/users/${id.toString()}`, user, config);
+      const resBody: IUser = await response.data;
 
       dispatch({
         type: UsersActions.UPDATE_USER,
@@ -109,6 +110,13 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
+
+  const clearCurrent = () => {
+    dispatch({
+      type: UsersActions.CLEAR_CURRENT,
+    });
+  };
+
   return (
     <UserContext.Provider value={{
       users: state.users,
@@ -121,6 +129,7 @@ const UserProvider: React.FC<Props> = ({ children }) => {
       addUser,
       updateUser,
       deleteUser,
+      clearCurrent,
     }}
     >
       {children}

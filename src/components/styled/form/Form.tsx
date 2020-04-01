@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
@@ -14,10 +15,12 @@ interface Props {
 }
 
 const Form: React.FC<Props> = ({ title }) => {
-  const { addUser, current, updateUser } = React.useContext(UserContext);
+  const {
+    addUser, current, clearCurrent, updateUser,
+  } = React.useContext(UserContext);
   const {
     userForm, handleChange, handleSubmit, setUserForm,
-  } = useForm(register);
+  } = useForm(handleSubmitNewUser, handleUpdateUser, current);
 
 
   React.useEffect(() => {
@@ -32,8 +35,16 @@ const Form: React.FC<Props> = ({ title }) => {
   }, [current, UserContext]);
 
 
-  function register() {
+  // function formAction(): void {
+  //   addUser(userForm);
+  // }
+
+  function handleSubmitNewUser(): void{
     addUser(userForm);
+  }
+  function handleUpdateUser(): void{
+    updateUser(userForm, current ? current.id.toString() : '');
+    clearCurrent();
   }
 
 
@@ -77,7 +88,7 @@ const Form: React.FC<Props> = ({ title }) => {
         </FormGroup>
 
 
-        <StyledBtn type="submit">Register</StyledBtn>
+        <StyledBtn type="submit">{current !== null ? 'Update' : 'Register'}</StyledBtn>
       </StyledForm>
     </TwoColWrapper>
   );

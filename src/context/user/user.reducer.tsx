@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import {
-  IUserState, UserActionType, UsersActions, IUser,
+  IUserState, UserActionType, UsersActions,
 } from './user.types';
 import { initialState } from './user.state';
 
@@ -20,7 +20,6 @@ export default (state: IUserState = initialState, action: UserActionType) => {
         loading: false,
       };
     case UsersActions.UPDATE_USER:
-
       return {
         ...state,
         users: state.users.map((user) => (user.id === action.payload.id ? action.payload : user)),
@@ -36,6 +35,11 @@ export default (state: IUserState = initialState, action: UserActionType) => {
       return {
         ...state,
         current: action.payload,
+      };
+    case UsersActions.CLEAR_CURRENT:
+      return {
+        ...state,
+        current: null,
       };
     default:
       return state;

@@ -19,6 +19,7 @@ export interface IUserState {
   addUser: Function;
   updateUser: Function;
   deleteUser: Function;
+  clearCurrent: Function;
 }
 
 export enum UsersActions {
@@ -30,6 +31,7 @@ export enum UsersActions {
   SEARCH_USER = 'SEARCH_USER',
   CLEAR_CURRENT = 'CLEAR_CURRENT',
   SET_CURRENT = 'SET_CURRENT',
+
 }
 
 export interface GetUsersAction {
@@ -60,6 +62,10 @@ export interface SetCurrentAction {
   payload: IUser;
 }
 
+export interface ClearCurrentAction {
+  type: UsersActions.CLEAR_CURRENT;
+}
+
 export type UserActionType =
   GetUsersAction
   | GetUserAction
@@ -67,3 +73,4 @@ export type UserActionType =
   | DeleteUserAction
   | AddUserAction
   | SetCurrentAction
+  | ClearCurrentAction

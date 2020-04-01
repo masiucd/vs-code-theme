@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/interface-name-prefix */
 import * as React from 'react';
+import { IUser } from '../context/user/user.types';
 
 
 export interface IFormData {
-  id?: number;
+  id?: number | null|string;
   name?: string;
   username?: string;
   email?: string;
@@ -12,8 +13,11 @@ export interface IFormData {
 }
 
 
-export default (register: Function) => {
+export default (
+  handleSubmitNewUser: Function, handleUpdateUser: Function, current: IUser | null,
+) => {
   const [userForm, setUserForm] = React.useState<IFormData>({
+    id: current ? current.id.toString() : null,
     name: '',
     username: '',
     email: '',
@@ -30,7 +34,11 @@ export default (register: Function) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    register();
+    if (current !== null) {
+      handleUpdateUser();
+    } else {
+      handleSubmitNewUser();
+    }
     setUserForm({
       name: '',
       username: '',
