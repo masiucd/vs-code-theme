@@ -68,4 +68,10 @@ export const StyledUserItem = styled.div`
     margin-right: auto;
 
   }
+
+  @media(max-width:375px){
+    p{
+      font-size: .9rem;
+    }
+  }
 `;

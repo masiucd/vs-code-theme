@@ -12,7 +12,6 @@ export const StyledBtn = styled.button`
   padding: .4rem .6rem;
   width: 12rem;
   text-decoration:none;
-  text-shadow:0px 1px 0px ${({ theme }) => theme.colors.white};
   transition: ${(props) => props.theme.transition.mainTransition};
   margin: .8rem 0 .5rem 0;
   letter-spacing: .1rem;
@@ -37,5 +36,24 @@ export const StyledBtn = styled.button`
 
 
 export const StyledLink = styled(Link)`
-
+ text-transform: capitalize;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, ${({ theme }) => theme.colors.common}), color-stop(50%, ${({ theme }) => theme.colors.warning}));
+  background-image: linear-gradient(to right, ${({ theme }) => theme.colors.common} 50%, ${({ theme }) => theme.colors.warning} 50%);
+  background-position: 0;
+  background-size: 200%;
+  border: none;
+  padding: .3rem .7rem;
+  margin-top: 1rem;
+  color: ${({ theme }) => theme.colors.white};
+  transition: ${(props) => props.theme.transition.mainTransition};
+  font-size: 20px;
+    &:hover{
+      box-shadow: ${({ theme }) => theme.shadow.darkShadow};
+      background-position: -100%;
+      color: ${({ theme }) => theme.colors.primary}
+    }
+    &:active{
+      position: relative;
+      top: 2px;
+    }
 `;

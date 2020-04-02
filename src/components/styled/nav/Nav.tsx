@@ -16,7 +16,7 @@ const Navbar: React.FC<Props> = () => {
   const [showSearchBar, toggleFn] = useToggle(false);
   return (
     <StyledNav>
-      <div id="toggleIcon" onClick={toggleFn}>🌞</div>
+      <div id="toggleIcon" onClick={toggleFn}>␦Seλrch</div>
       {showSearchBar && <SearchBar />}
 
       <StyledNavList>

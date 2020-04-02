@@ -6,17 +6,19 @@ import UserProvider from './context/user/user.state';
 import UsersPage from './pages/UsersPage';
 import HomePage from './pages/HomePage';
 import { Container } from './components/styled/Wrapper';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
     <UserProvider>
       <Layout>
-        <Switch>
-          <Container>
+        <Container>
+          <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/users" component={UsersPage} />
-          </Container>
-        </Switch>
+            <Route component={NotFound} />
+          </Switch>
+        </Container>
       </Layout>
     </UserProvider>
   );
