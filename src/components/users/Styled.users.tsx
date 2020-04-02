@@ -29,7 +29,7 @@ export const StyledUserItem = styled.div`
   flex-direction:column;
   align-items:center;
   justify-content: space-around;
-  padding: 1rem;
+  padding: 3rem 1rem;
   background: ${(props) => props.theme.colors.common};
   width: 100%;
   color: ${(props) => props.theme.colors.white};

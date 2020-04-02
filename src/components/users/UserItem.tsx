@@ -19,7 +19,6 @@ const UserItem: React.FC<Props> = ({ user }) => {
 
   const handleDelete = () => {
     deleteUser(user.id.toString());
-    console.log('deleting!!!');
   };
   return (
     <StyledUserItem>
