@@ -9,7 +9,9 @@ interface Props {
 }
 
 const Users: React.FC<Props> = () => {
-  const { getUsers, users, loading } = React.useContext(UserContext);
+  const {
+    getUsers, users, filterUsers, loading,
+  } = React.useContext(UserContext);
   React.useEffect(() => {
     getUsers();
   }, []);
@@ -17,9 +19,9 @@ const Users: React.FC<Props> = () => {
   return (
     <>
       <TwoColWrapper>
-        {!loading && users.length > 0 && users.map(
+        {!loading && filterUsers !== null ? filterUsers.map(
           (user) => <UserItem key={user.id} user={user} />,
-        )}
+        ) : users.map((user) => <UserItem key={user.id} user={user} />)}
       </TwoColWrapper>
     </>
   );

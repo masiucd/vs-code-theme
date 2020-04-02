@@ -37,7 +37,7 @@ export const StyledUserItem = styled.div`
   box-shadow: ${(props) => props.theme.shadow.lightShadow};
   letter-spacing: .1rem;
   border-radius: 1rem;
-  animation: 1s ${FadeIn} ease-in;
+  animation: .5s ${FadeIn} ease-in;
   p{
     font-size: 1.2rem;
     span{

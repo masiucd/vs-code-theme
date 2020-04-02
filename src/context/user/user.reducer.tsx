@@ -41,6 +41,19 @@ export default (state: IUserState = initialState, action: UserActionType) => {
         ...state,
         current: null,
       };
+    case UsersActions.SEARCH_USER:
+      return {
+        ...state,
+        filterUsers: state.users.filter((user) => {
+          const reg = new RegExp(`${action.payload}`, 'gi');
+          return user.name.match(reg) || user.username.match(reg);
+        }),
+      };
+    case UsersActions.CLEAR_SEARCH:
+      return {
+        ...state,
+        filterUsers: null,
+      };
     default:
       return state;
   }

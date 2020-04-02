@@ -24,6 +24,8 @@ export const initialState: IUserState = {
   updateUser: Function,
   deleteUser: Function,
   clearCurrent: Function,
+  searchUser: Function,
+  clearUsers: Function,
 };
 
 export const UserContext = React.createContext<IUserState>(initialState);
@@ -117,6 +119,20 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     });
   };
 
+
+  const searchUser = (text: string) => {
+    dispatch({
+      type: UsersActions.SEARCH_USER,
+      payload: text,
+    });
+  };
+
+  const clearUsers = () => {
+    dispatch({
+      type: UsersActions.CLEAR_SEARCH,
+    });
+  };
+
   return (
     <UserContext.Provider value={{
       users: state.users,
@@ -130,6 +146,8 @@ const UserProvider: React.FC<Props> = ({ children }) => {
       updateUser,
       deleteUser,
       clearCurrent,
+      searchUser,
+      clearUsers,
     }}
     >
       {children}

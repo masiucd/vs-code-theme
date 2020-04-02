@@ -16,7 +16,7 @@ interface Props {
 
 const Form: React.FC<Props> = ({ title }) => {
   const {
-    addUser, current, clearCurrent, updateUser,
+    addUser, current, clearCurrent, updateUser, loading,
   } = React.useContext(UserContext);
   const {
     userForm, handleChange, handleSubmit, setUserForm,
@@ -35,10 +35,6 @@ const Form: React.FC<Props> = ({ title }) => {
   }, [current, UserContext]);
 
 
-  // function formAction(): void {
-  //   addUser(userForm);
-  // }
-
   function handleSubmitNewUser(): void{
     addUser(userForm);
   }
@@ -50,46 +46,48 @@ const Form: React.FC<Props> = ({ title }) => {
 
   return (
     <TwoColWrapper>
-      <StyledForm onSubmit={handleSubmit}>
-        <h3>{title}</h3>
-        <FormGroup>
-          <FormLabel>
-            <span>Name:</span>
-            <Input onChange={handleChange} type="text" placeholder="name" value={userForm.name} name="name" />
-          </FormLabel>
-        </FormGroup>
+      {loading ? <h3>...Loading</h3> : (
+        <StyledForm onSubmit={handleSubmit}>
+          <h3>{title}</h3>
+          <FormGroup>
+            <FormLabel>
+              <span>Name:</span>
+              <Input onChange={handleChange} type="text" placeholder="name" value={userForm.name} name="name" />
+            </FormLabel>
+          </FormGroup>
 
-        <FormGroup>
-          <FormLabel>
-            <span>Email:</span>
-            <Input onChange={handleChange} type="email" placeholder="email" value={userForm.email} name="email" />
-          </FormLabel>
-        </FormGroup>
+          <FormGroup>
+            <FormLabel>
+              <span>Email:</span>
+              <Input onChange={handleChange} type="email" placeholder="email" value={userForm.email} name="email" />
+            </FormLabel>
+          </FormGroup>
 
-        <FormGroup>
-          <FormLabel>
-            <span>Username:</span>
-            <Input onChange={handleChange} type="text" placeholder="username" value={userForm.username} name="username" />
-          </FormLabel>
-        </FormGroup>
+          <FormGroup>
+            <FormLabel>
+              <span>Username:</span>
+              <Input onChange={handleChange} type="text" placeholder="username" value={userForm.username} name="username" />
+            </FormLabel>
+          </FormGroup>
 
-        <FormGroup>
-          <FormLabel>
-            <span>phone:</span>
-            <Input onChange={handleChange} type="text" placeholder="phone" value={userForm.phone} name="phone" />
-          </FormLabel>
-        </FormGroup>
+          <FormGroup>
+            <FormLabel>
+              <span>phone:</span>
+              <Input onChange={handleChange} type="text" placeholder="phone" value={userForm.phone} name="phone" />
+            </FormLabel>
+          </FormGroup>
 
-        <FormGroup>
-          <FormLabel>
-            <span>Website:</span>
-            <Input onChange={handleChange} type="text" placeholder="website" value={userForm.website} name="website" />
-          </FormLabel>
-        </FormGroup>
+          <FormGroup>
+            <FormLabel>
+              <span>Website:</span>
+              <Input onChange={handleChange} type="text" placeholder="website" value={userForm.website} name="website" />
+            </FormLabel>
+          </FormGroup>
 
 
-        <StyledBtn type="submit">{current !== null ? 'Update' : 'Register'}</StyledBtn>
-      </StyledForm>
+          <StyledBtn type="submit">{current !== null ? 'Update' : 'Register'}</StyledBtn>
+        </StyledForm>
+      ) }
     </TwoColWrapper>
   );
 };
