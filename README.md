@@ -1,17 +1,14 @@
-# React app with Ts and using json place holder
+# Masiu theme 🎨👩🏻‍🎨
 
-Testing and trying out to find a new concept how to structure up a React Typescript app with **Context API**.
-Trying to think in the REdux land as much a possible but without taking in any extra dependents.
+This is my VS code theme. It is a clone of the very popular _Night owl theme_ by [Sarah Drasner](https://github.com/sdras)
 
-### Tools so far! 😎λ⚛️🐼
+I love the theme and the Italic style, specially if you using a font like _Operator mono_ or _Dank mono_.
+I just wanted less italic so I forked the theme and just changed the configuration when it should be italic ore not, just how I liked it.
 
-* React
+### Example 1
 
-* Typescript
+<img src="./ex1.png" width="6000" />
 
-* Styled components
+### Example 2
 
-* Context API
-
-* Json place holder API
-
+<img src="./ex2.png" width="6000" />
